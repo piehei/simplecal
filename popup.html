@@ -21,13 +21,14 @@
         <div>{{today.day}}.{{today.month}}.{{today.year}}</div>
 
         <div v-for="week, weeknro in weeks">
-
-                <div class="wk">
-                    <div class="viikkonro">{{weeknro}}</div>
+                <div class="wk"
+                     v-bind:class="{ 'toppi': typeof weeks[weeknro - 1] != 'undefined' ? weeks[weeknro - 1][0].month() != week[0].month() : '' }">
+                    <div class="viikkonro">{{weeknro}} </div>
 
                     <template v-for="day in week">
 
-                        <div class="pv">{{day.date()}}</div>
+                        <div class="pv"
+                            v-bind:class="{ 'today': day.calendar() === today.obj.calendar() }">{{day.date()}}</div>
                     </template>
 
                 </div>

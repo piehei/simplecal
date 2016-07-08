@@ -21,6 +21,12 @@ body {
     width: 24px;
     border: 1px solid grey;
 }
+.today {
+    background-color: lightgreen;
+}
+.toppi {
+   margin-top:15px;
+}
 .pv_t {
     background:yellow;
     display: inline-block;

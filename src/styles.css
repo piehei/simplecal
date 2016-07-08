@@ -1,0 +1,115 @@
+body {
+    width:600px;
+    padding-left:20px;
+}
+#cal {
+    margin-left:20px;
+    margin-top:15px;
+}
+
+#cont {
+    margin: 20px;
+}
+.wk {
+    display:inline-block;
+    margin:0 5px 2px 2px;
+}
+.pv {    display: inline-block;
+    margin: 2px;
+    padding: 2px;
+    padding-left: 3px;
+    width: 24px;
+    border: 1px solid grey;
+}
+.pv_t {
+    background:yellow;
+    display: inline-block;
+    margin: 2px;
+    padding: 2px;
+    padding-left: 3px;
+    width: 24px;
+    border: 1px solid grey;
+}
+#napit {
+    margin-left:60px;
+}
+.nappu {
+    margin-right:15px;
+}
+
+.viikko {
+    width:100%;
+    display:block;
+    height:25px;
+    padding-left:20px;
+}
+.nyt_viikko {
+    background: #EEE;
+}
+
+.viikkonro {
+    width:60px;
+    float:left;
+    height:20px;
+    padding-top:5px;
+    display: inline-block;
+}
+.paiva {
+    width:35px;
+    height:20px;
+    padding-top:5px;
+    padding-left:2px;
+    float:left;
+    display: inline-block;
+}
+
+#root {
+    float:right;
+    display: inline-block;
+    margin-bottom:50px;
+}
+#root_buttons {
+    float:left;
+    width:65px;
+    display: inline-block;
+    margin-top:80px;
+}
+#root_buttons button {
+    margin-bottom:20px;
+}
+.month_name {
+    float:left;
+    width:100px;
+    display: inline-block;
+    margin-left:20px;
+}
+
+#first_row {
+    padding-left:80px;
+    margin-bottom:20px;
+}
+
+.nyt_viikko > .nyt_pv {
+    /*    background:#1CFF00; */
+    font-weight:bold;
+    color:red;
+}
+
+.button {
+    background-size: contain;
+    height:45px;
+    width:45px;
+    background-repeat: no-repeat;
+}
+#button_up {
+    background-image: url("arrow_up.png");
+}
+#button_down {
+    background-image: url("arrow_down.png");
+}
+.bg1 {
+    background: #A8F4FF;
+}
+.bg1 {
+
+}

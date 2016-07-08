@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SimpleCal</title>
+
+    <link rel="stylesheet" href="src/styles.css">
+
+</head>
+<body>
+
+<div id="app">
+
+    <!--<div id="root_buttons">-->
+        <!--<div id="button_up" class="button"></div>-->
+        <!--<div id="button_down" class="button"></div>-->
+    <!--</div>-->
+
+    <div id="cont">
+
+        <div>{{today.day}}.{{today.month}}.{{today.year}}</div>
+
+        <div v-for="week, weeknro in weeks">
+
+                <div class="wk">
+                    <div class="viikkonro">{{weeknro}}</div>
+
+                    <template v-for="day in week">
+
+                        <div class="pv">{{day.date()}}</div>
+                    </template>
+
+                </div>
+
+                <div class="month_name"></div>
+
+
+        </div>
+
+
+    </div>
+</div>
+    <script src="node_modules/moment/min/moment.min.js"></script>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="src/cal.js"></script>
+
+</body>
+</html>

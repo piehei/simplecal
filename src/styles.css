@@ -9,6 +9,7 @@ body {
 
 #cont {
     margin: 20px;
+    float:right;
 }
 .wk {
     display:inline-block;

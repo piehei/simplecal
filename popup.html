@@ -11,25 +11,28 @@
 
 <div id="app">
 
-    <!--<div id="root_buttons">-->
-        <!--<div id="button_up" class="button"></div>-->
-        <!--<div id="button_down" class="button"></div>-->
-    <!--</div>-->
+
+    <div id="root_buttons">
+        <div v-on:click="more('-1')" id="button_up" class="button"></div>
+        <div v-on:click="more('1')" id="button_down" class="button"></div>
+    </div>
 
     <div id="cont">
 
         <div>{{today.day}}.{{today.month}}.{{today.year}}</div>
 
-        <div v-for="week, weeknro in weeks">
-                <div class="wk"
-                     v-bind:class="{ 'toppi': typeof weeks[weeknro - 1] != 'undefined' ? weeks[weeknro - 1][0].month() != week[0].month() : '' }">
-                    <div class="viikkonro">{{weeknro}} </div>
+        <div v-for="week, weekIndex in weeks">
 
-                    <template v-for="day in week">
+            <div class="wk"
+            v-bind:class="{ 'toppi': typeof weeks[weekIndex - 1] != 'undefined' ? weeks[weekIndex - 1][6].month() != week[6].month() : '' }">
+            <div class="viikkonro">{{ week[0].week() }} </div>
 
-                        <div class="pv"
+
+                <template v-for="day in week">
+                            <div class="pv"
                             v-bind:class="{ 'today': day.calendar() === today.obj.calendar() }">{{day.date()}}</div>
-                    </template>
+                </template>
+
 
                 </div>
 

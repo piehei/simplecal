@@ -15,6 +15,11 @@ body {
     display:inline-block;
     margin:0 5px 2px 2px;
 }
+
+.pv:nth-last-child(2), .pv:nth-last-child(1) {
+    background: lightcyan;
+}
+
 .pv {    display: inline-block;
     margin: 2px;
     padding: 2px;
@@ -25,9 +30,23 @@ body {
 .today {
     background-color: lightgreen;
 }
+#weekDays {
+    padding-bottom: 7.5px;
+    border-bottom: solid 1.5px grey;
+    margin-bottom: 7.5px;
+}
+
+
 .toppi {
    margin-top:15px;
+    display:block !important;
 }
+
+.wkMonthSeparator {
+    text-align:right;
+    display:none;
+}
+
 .pv_t {
     background:yellow;
     display: inline-block;

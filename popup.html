@@ -19,12 +19,27 @@
 
     <div id="cont">
 
-        <div>{{today.day}}.{{today.month}}.{{today.year}}</div>
+        <div id="today">{{today.day}}.{{today.month}}.{{today.year}}</div>
+
+
+        <div id="weekDays" class="wk">
+            <div class="viikkonro"> </div>
+            <div class="pv" v-for="pv in locale.days">{{pv}}</div>
+        </div>
+
+
 
         <div v-for="week, weekIndex in weeks">
 
-            <div class="wk"
-            v-bind:class="{ 'toppi': typeof weeks[weekIndex - 1] != 'undefined' ? weeks[weekIndex - 1][6].month() != week[6].month() : '' }">
+            <div class="wk">
+
+            <div class="wkMonthSeparator"
+                    v-bind:class="{ 'toppi': typeof weeks[weekIndex - 1] != 'undefined' ? weeks[weekIndex - 1][6].month() != week[6].month() : '' }">
+                <span v-if="weekIndex > 0" class="monthName">
+                    {{ today.obj.localeData().months( week[6] ) }}
+                </span>
+            </div>
+
             <div class="viikkonro">{{ week[0].week() }} </div>
 
 
@@ -37,7 +52,6 @@
                 </div>
 
                 <div class="month_name"></div>
-
 
         </div>
 

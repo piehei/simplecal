@@ -15,81 +15,86 @@ var app = {
     },
     weeks: {},
     vue: {},
-    ui: { showWeeks: 8 }
+    ui: { showWeeks: 8, firstWeek: 0, controlWeek: 0 }
 }
 
-var today = moment();
 
-app.now.obj = today;
-app.now.day = today.day();
-app.now.week = today.week();
-app.now.month = today.month() + 1;
-app.now.date = today.date();
-app.now.year = today.year();
+function initVariables() {
+    console.log('FUNC: initVariables');
+
+    var today = moment().hours(00).minutes(00);
+
+    app.now.obj = today;
+    app.now.day = today.day();
+    app.now.week = today.week();
+    app.now.month = today.month() + 1;
+    app.now.date = today.date();
+    app.now.year = today.year();
+
+    app.now.firstDayOfCurrentMObject = moment(today).subtract(today.date() - 1, 'day');
+
+    app.ui.controlObj = moment(app.now.firstDayOfCurrentMObject.year() + "W" + app.now.firstDayOfCurrentMObject.week())
+                            .subtract(3, 'week');
+    app.ui.controlWeek = app.ui.controlObj.week();
+    app.ui.controlYear = app.ui.controlObj.year();
+
+    app.ui.firstWeekOffset = 0;
+
+    console.log(app);
+
+    initVue();
+}
+initVariables();
 
 
-app.now.firstWeekOfNowMonth = moment(today).subtract(today.date() - 1, 'day').week();
+// returns an array of size 7
+function returnWeekArray(controlObj, offset) {
+    console.log('returnWeekArr: ' + controlObj.week() + " " + offset);
 
-console.log('today :' + app.now.obj.calendar());
-app.weeks[app.now.obj.year()] = {};
-app.weeks[app.now.obj.year()][app.now.week] = [moment(app.now.obj).subtract(app.now.day === 1 ? app.now.day : app.now.day - 1, 'days')];
+    var first = moment(controlObj).add(offset, 'week');
 
+    var arr = [];
 
-for (var i = 0; i < 10; i += 1) {
+    for (var i = 0; i < 7; i += 1) {
 
-    var newWeekStart = moment(app.weeks[app.now.obj.year()][app.now.week][0]);
-    newWeekStart.add(i-5, 'week');
-    console.log(newWeekStart);
-
-    if (newWeekStart.week() === 1 && typeof app.weeks[newWeekStart.year()] === 'undefined') {
-        app.weeks[newWeekStart.year()] = {};
+        arr.push(moment(first).add(i, 'day'));
     }
 
-    app.weeks[newWeekStart.year()][newWeekStart.week()] = [newWeekStart];
-
-    for (var n = 1; n < 7; n += 1) {
-        var un = moment(newWeekStart);
-        un.add(n, 'day');
-        app.weeks[newWeekStart.year()][newWeekStart.week()].push(un);
-    }
-
-
+    return arr;
 }
 
-console.dir(app.weeks);
 
+function initVue() {
+    app.vue = new Vue({
+        el: '#app',
+        data: {
+            today: app.now,
+            ui: app.ui,
+            locale: {
+                days: ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+            }
+        },
+        computed: {
+            weeks: function () {
 
-app.vue = new Vue({
-    el: '#app',
-    data: {
-        today: app.now,
-    },
-    computed: {
-        weeks: function () {
+                var arr = [];
 
-            var first = app.now.firstWeekOfNowMonth - 2;
-            var startYear = first > 0 ? app.now.year : app.now.year - 1;
+                for (var i = 0; i < this.ui.showWeeks; i += 1) {
+                    var newArr = returnWeekArray(this.ui.controlObj, this.ui.firstWeekOffset + i);
+                    arr.push(newArr);
+                }
 
+                return arr;
+            }
+        },
+        methods: {
 
-            var arri = [];
-
-            for (var i = 0; i < app.ui.showWeeks; i += 1) {
-
-
-
-                arri.push( app.weeks[startYear][first + i] );
+            more: function (par) {
+                var moar = parseInt(par);
+                console.log('MOAR ' + moar);
+                this.ui.firstWeekOffset += moar;
             }
 
-            console.log(arri)
-            return arri;
         }
-    },
-    methods: {
-
-        more: function (par) {
-            par = parseInt(par);
-            console.log('more ' + par);
-        }
-
-    }
-})
+    })
+}

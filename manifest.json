@@ -6,13 +6,13 @@
   "version": "0.5.2",
   "author": "Pietari Heino (www.extreg.com)",
   "icons": {
-    "128": "cal.png"
+    "128": "dist/cal.png"
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 
   "browser_action": {
-    "default_icon": "cal.png",
-    "default_popup": "popup.html"
+    "default_icon": "dist/cal.png",
+    "default_popup": "dist/popup.html"
   },
   "permissions": [
     "activeTab"

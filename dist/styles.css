@@ -1,6 +1,10 @@
 body {
-    width:600px;
+    width:450px;
     padding-left:20px;
+}
+
+#app {
+    height:450px;
 }
 #cal {
     margin-left:20px;
@@ -9,7 +13,8 @@ body {
 
 #cont {
     margin: 20px;
-    float:right;
+    float:left;
+    width:320px;
 }
 .wk {
     display:inline-block;
@@ -95,10 +100,10 @@ body {
     margin-bottom:50px;
 }
 #root_buttons {
-    float:left;
     width:65px;
     display: inline-block;
     margin-top:80px;
+    font-size: 2em;
 }
 #root_buttons button {
     margin-bottom:20px;

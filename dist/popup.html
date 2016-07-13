@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>SimpleCal</title>
 
-    <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="deps/font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+
 
 </head>
 <body>
@@ -12,10 +14,6 @@
 <div id="app">
 
 
-    <div id="root_buttons">
-        <div v-on:click="more('-1')" id="button_up" class="button"></div>
-        <div v-on:click="more('1')" id="button_down" class="button"></div>
-    </div>
 
     <div id="cont">
 
@@ -57,10 +55,17 @@
 
 
     </div>
+
+
+    <div id="root_buttons">
+        <div v-on:click="more('-1')"><i class="fa fa-arrow-up" aria-hidden="true"></i></div>
+        <div v-on:click="more('1')"><i class="fa fa-arrow-down" aria-hidden="true"></i></div>
+    </div>
+
 </div>
-    <script src="node_modules/moment/min/moment.min.js"></script>
-    <script src="node_modules/vue/dist/vue.js"></script>
-    <script src="src/cal.js"></script>
+    <script src="deps/moment-with-locales.min.js"></script>
+    <script src="deps/vue.min.js"></script>
+    <script src="cal.js"></script>
 
 </body>
 </html>

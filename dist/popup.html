@@ -29,25 +29,68 @@
 
             <div class="wk">
 
-            <div class="wkMonthSeparator"
-                    v-bind:class="{ 'toppi': typeof weeks[weekIndex - 1] != 'undefined' ? weeks[weekIndex - 1][6].month() != week[6].month() : '' }">
-                <span v-if="weekIndex > 0" class="monthName">
-                    {{ today.obj.localeData().months( week[6] ) }}
-                </span>
-            </div>
-
-            <div class="viikkonro">{{ week[0].week() }} </div>
 
 
-                <template v-for="day in week">
-                            <div class="pv"
-                            v-bind:class="{ 'today': day.calendar() === today.obj.calendar() }">{{day.date()}}</div>
+
+                <template v-if="week[0].month() === week[6].month()">
+
+                    <!-- if the week starts with the first day of the month,
+                         a separator is needed immediately before it -->
+                    <div v-if="week[0].date() === 1" class="wkMonthSeparator"
+                         v-bind:class="{ 'toppi': typeof weeks[weekIndex - 1] != 'undefined' ? weeks[weekIndex - 1][6].month() != week[6].month() : '' }">
+                        <span v-if="weekIndex > 0" class="monthName">
+                            {{ today.obj.localeData().months( week[6] ) }}
+                        </span>
+                    </div>
+
+
+
+                    <div class="viikkonro">{{ week[1].isoWeek() }} </div>
+
+
+                    <div class="pv"
+                         v-bind:class="{ 'today': day.calendar() === today.obj.calendar() }"
+                         v-for="day in week">{{day.date()}}</div>
                 </template>
 
 
-                </div>
+                <!-- this handles the weeks where the month changes -->
+                <template v-else>
 
-                <div class="month_name"></div>
+
+                    <!-- the days of the ending month plus empty days -->
+                    <div class="viikkonro">{{ week[0].isoWeek() }} </div>
+
+                    <div class="pv"
+                         v-for="day, index in week">
+                            {{ week[index].month() === week[ 0 ].month() ? day.date() : ' ' }}
+                    </div>
+
+
+                    <div class="wkMonthSeparator"
+                         v-bind:class="{ 'toppi': typeof weeks[weekIndex - 1] != 'undefined' ? weeks[weekIndex - 1][6].month() != week[6].month() : '' }">
+                        <span v-if="weekIndex > 0" class="monthName">
+                            {{ today.obj.localeData().months( week[6] ) }}
+                        </span>
+                    </div>
+
+
+                    <!-- empty days plus the first days of the beginning month -->
+                    <div class="viikkonro">{{ week[0].isoWeek() }} </div>
+
+
+                    <div class="pv"
+                         v-for="day, index in week">
+                        {{ week[index].month() === week[ 6 ].month() ? day.date() : ' ' }}
+                    </div>
+
+
+                </template>
+
+
+
+
+                </div>
 
         </div>
 
@@ -61,6 +104,8 @@
     </div>
 
 </div>
+
+
     <script src="deps/moment-with-locales.min.js"></script>
     <script src="deps/vue.min.js"></script>
     <script src="cal.js"></script>

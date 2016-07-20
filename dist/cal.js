@@ -50,15 +50,37 @@ initVariables();
 // returns an array that consists of seven moments (one week)
 function returnWeekArray(controlObj, offset) {
     // console.log('returnWeekArr: ' + controlObj.week() + " " + offset);
+    var arr = [];
 
     var first = moment(controlObj).add(offset, 'week');
 
-    var arr = [];
+    var last = moment(first).add(6, 'day');
 
-    for (var i = 0; i < 7; i += 1) {
+//    if (first.month() === last.month()) {
+        for (var i = 0; i < 7; i += 1) {
 
-        arr.push(moment(first).add(i, 'day'));
-    }
+            arr.push(moment(first).add(i, 'day'));
+        }
+
+    // } else {
+    //
+    //     var endingArr = [];
+    //     var startingArr = [];
+    //
+    //     for (var i = 0; i < 7; i += 1)
+    //     {
+    //
+    //         endingArr.push(moment(first).add(i, 'day'));
+    //         startingArr.push('');
+    //
+    //         if ()
+    //
+    //
+    //     }
+    //
+    //
+    // }
+
 
     return arr;
 }
@@ -94,7 +116,7 @@ function initVue() {
 
             more: function (par) {
                 var moar = parseInt(par);
-                console.log('MOAR ' + moar);
+               // console.log('MOAR ' + moar);
                 this.ui.firstWeekOffset += moar;
             }
 

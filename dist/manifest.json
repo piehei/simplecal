@@ -3,7 +3,7 @@
 
   "name": "Simple calendar (with week numbers!)",
   "description": "This extension displays a small calendar widget on the top-right corner of the browser (the usual extension popup area).",
-  "version": "0.5.13",
+  "version": "0.5.15",
   "author": "Pietari Heino (www.extreg.com)",
   "icons": {
     "128": "cal.png"
